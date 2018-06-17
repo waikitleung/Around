@@ -11,7 +11,6 @@ import (
 	"strconv"
 	"strings"
 
-	"cloud.google.com/go/bigtable"
 	"cloud.google.com/go/storage"
 	"github.com/auth0/go-jwt-middleware"
 	"github.com/dgrijalva/jwt-go"
@@ -41,7 +40,7 @@ const (
 	PROJECT_ID  = "sunny-effort-206503"
 	BT_INSTANCE = "around-post"
 	// Needs to update this URL if you deploy it to cloud.
-	ES_URL      = "http://35.188.31.167:9200/"
+	ES_URL      = "http://35.184.129.201:9200/"
 	BUCKET_NAME = "post-images-20131435"
 )
 
@@ -153,7 +152,7 @@ func handlerPost(w http.ResponseWriter, r *http.Request) {
 	saveToES(p, id)
 
 	// Save to BigTable.
-	saveToBigTable(p, id)
+	//saveToBigTable(p, id)
 
 }
 
@@ -202,6 +201,7 @@ func containsFilteredWords(s *string) bool {
 	return false
 }
 
+/*
 func saveToBigTable(p *Post, id string) {
 	ctx := context.Background()
 	// you must update project name here
@@ -228,6 +228,7 @@ func saveToBigTable(p *Post, id string) {
 	fmt.Printf("Post is saved to BigTable: %s\n", p.Message)
 
 }
+*/
 
 // Save a post to ElasticSearch
 func saveToES(p *Post, id string) {
